@@ -15,6 +15,20 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+TEMPLATES_DIR = os.path.join(BASE_DIR,'templates/')
+
+STATIC_DIR = os.path.join(BASE_DIR,'static/')
+# STATICFILES_DIRS = [STATIC_DIR,]
+STATIC_URL = '/static/'
+
+
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -39,6 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third party apps
     'rest_framework',
+
+    # webapps
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +73,7 @@ ROOT_URLCONF = 'dev_mongo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,33 +138,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-TEMPLATES_DIR = os.path.join(BASE_DIR,'templates/')
-
-STATIC_DIR = os.path.join(BASE_DIR,'static/')
-# STATICFILES_DIRS = [STATIC_DIR,]
-STATIC_URL = '/static/'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
-MEDIA_ROOT  = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
-
-
-'''
-# AWS S3 Bucket
-AWS_ACCESS_KEY_ID = 'AKIAX2U5VNMYBSKY3YS4'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'djangopractice'
-AWS_S3_REGION_NAME = 'ap-south-1'
-AWS_S3_SIGNATURE_VERSION = "s3v4"
-# AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-'''
