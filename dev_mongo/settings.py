@@ -146,4 +146,18 @@ REST_FRAMEWORK = {
     ]
 }
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+TEMPLATES_DIR = os.path.join(BASE_DIR,'templates/')
+
+STATIC_DIR = os.path.join(BASE_DIR,'static/')
+# STATICFILES_DIRS = [STATIC_DIR,]
+STATIC_URL = '/static/'
+
+
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+
 
